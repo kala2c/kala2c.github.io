@@ -53,7 +53,7 @@
 <meta property="og:site_name" content="kala的博客">
 <meta property="og:description" content="ubuntu18更换了桌面环境，配置sublime启动器时略有不同，大概安装和ubuntu16一致 本文从头开始安装sublime并添加中文输入支持 安装sublime到 sublime官网下载linux可用的sublime_text_3程序包(非安装包)">
 <meta property="article:published_time" content="2018-09-12T13:47:51.000Z">
-<meta property="article:modified_time" content="2019-12-12T09:46:40.195Z">
+<meta property="article:modified_time" content="2019-12-12T10:06:58.396Z">
 <meta property="article:author" content="kala">
 <meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="sublime">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-12 17:46:40" itemprop="dateModified" datetime="2019-12-12T17:46:40+08:00">2019-12-12</time>
+                <time title="修改时间：2019-12-12 18:06:58" itemprop="dateModified" datetime="2019-12-12T18:06:58+08:00">2019-12-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,10 +264,13 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Version&#x3D;1.0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Type&#x3D;Application</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Name&#x3D;Sublime Text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">GenericName&#x3D;Text Editor</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Comment&#x3D;Sophisticated text editor for code, markup and prose</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Exec&#x3D;bash -c &quot;LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">Terminal&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">MimeType&#x3D;text&#x2F;plain;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">Icon&#x3D;sublime-text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">Categories&#x3D;TextEditor;Development;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">StartupNotify&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">Actions&#x3D;Window;Document;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">[Desktop Action Window]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">Name&#x3D;New Window</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">Exec&#x3D;bash -c &quot;LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">OnlyShowIn&#x3D;Gnome;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">[Desktop Action Document]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">Name&#x3D;New File</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">Exec&#x3D;bash -c &quot;LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">OnlyShowIn&#x3D;Gnome;</span></pre></td></tr></table></figure>
 <p>保存后，修改文件权限</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chown 用户名:用户名 sublime.desktop</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">用户名为当前登录到ubuntu的用户名</span></pre></td></tr></table></figure>
-<p>在图形界面下找到文件，双击能启动软件的话就创建成功了</p>
+<p>在图形界面下找到文件，右击文件</p>
+<p>选择属性-&gt;权限，勾选“允许作为可执行文件”，顺便查看一下用户组是否为当前用户</p>
+<p>关闭属性界面，双击文件，选择“trust and lanuch”</p>
+<p>如果能正常启动应用，就创建成功了</p>
 <p>然后移动到/usr/share/applications</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv sublime.desktop &#x2F;usr&#x2F;local&#x2F;applications&#x2F;</span></pre></td></tr></table></figure>
-<p>现在打开程序菜单，就找到sublime的图标了</p>
+<p>现在打开程序列表，就找到sublime的图标了</p>
 <p>完成</p>
 
     </div>
