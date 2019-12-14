@@ -1,52 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.1.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+    
 
-<link rel="stylesheet" href="/css/main.css">
+    
+
+    
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('http://blog.c2wei.cn').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
-
-  <meta name="description" content="ubuntu18更换了桌面环境为Gnome，二进制文件启动的应用不能固定到dock，如sublime、idea等，需要自己创建启动图标并添加到启动器 首先创建一个后缀名为.desktop的文件">
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ubuntu18添加应用到启动器 | kala的博客 | 个人学习总结、踩坑记录、感悟分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ubuntu">
+    <meta name="description" content="ubuntu18更换了桌面环境为Gnome，二进制文件启动的应用不能固定到dock，如sublime、idea等，需要自己创建启动图标并添加到启动器 首先创建一个后缀名为.desktop的文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu18添加应用到启动器">
 <meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2018&#x2F;06&#x2F;12&#x2F;ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8&#x2F;index.html">
@@ -57,190 +32,158 @@
 <meta property="article:author" content="kala">
 <meta property="article:tag" content="ubuntu">
 <meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 
-<link rel="canonical" href="http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/">
+    <!-- custom head -->
+    
 
+<meta name="generator" content="Hexo 4.1.0"></head>
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
+<body>
+    <div id="loading" class="active"></div>
 
-  <title>ubuntu18添加应用到启动器 | kala的博客</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">kala的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">kala</h5>
+          <a href="mailto:clw_work@163.com" title="clw_work@163.com" class="mail">clw_work@163.com</a>
+        </hgroup>
+      </div>
     </div>
-        <p class="site-subtitle">个人学习总结、踩坑记录、感悟分享</p>
-  </div>
-
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kala2c" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-</div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ubuntu18添加应用到启动器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ubuntu18添加应用到启动器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-06-12T08:45:00.000Z" itemprop="datePublished" class="page-time">
+  2018-06-12
+</time>
 
 
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ubuntu/">ubuntu</a></li></ul>
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-  </ul>
-
-</nav>
-</div>
-    </header>
+            
+        </h5>
+    </div>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+</header>
 
-          <div class="content">
-            
 
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/">
+<div class="container body-wrap">
+    
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="kala">
-      <meta itemprop="description" content="">
-    </span>
+<article id="post-ubuntu18添加应用到启动器"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="kala的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          ubuntu18添加应用到启动器
-        </h1>
-
+    <div class="post-card">
+        <h1 class="post-card-title">ubuntu18添加应用到启动器</h1>
         <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+            <time class="post-time" title="2018-06-12 16:45:00" datetime="2018-06-12T08:45:00.000Z"  itemprop="datePublished">2018-06-12</time>
 
-              <time title="创建时间：2018-06-12 16:45:00" itemprop="dateCreated datePublished" datetime="2018-06-12T16:45:00+08:00">2018-06-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-13 12:39:53" itemprop="dateModified" datetime="2019-12-13T12:39:53+08:00">2019-12-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ubuntu/">ubuntu</a></li></ul>
 
-          
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
 
         </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p>ubuntu18更换了桌面环境为Gnome，二进制文件启动的应用不能固定到dock，如sublime、idea等，需要自己创建启动图标并添加到启动器</p>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>ubuntu18更换了桌面环境为Gnome，二进制文件启动的应用不能固定到dock，如sublime、idea等，需要自己创建启动图标并添加到启动器</p>
 <p>首先创建一个后缀名为.desktop的文件</p>
 <a id="more"></a>
 
@@ -260,204 +203,264 @@
 <p>直接将文件移动到目录即可，启动器就会出现图标</p>
 <p>右击应用列表中的应用图标会有添加到收藏夹，就可以添加到dock了</p>
 
-    </div>
+        </div>
 
+        <blockquote class="post-copyright">
     
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
-          </div>
+    <footer>
+        <a href="http://blog.c2wei.cn">
+            <img src="/img/avatar.jpg" alt="kala">
+            kala
+        </a>
+    </footer>
+</blockquote>
 
         
 
 
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2017/04/07/%E4%BD%BF%E7%94%A8webhooks%E5%AE%9E%E7%8E%B0git%E8%87%AA%E5%8A%A8%E6%8B%89%E5%8F%96%E4%BB%A3%E7%A0%81/" rel="prev" title="使用webhooks实现git自动拉取代码">
-      <i class="fa fa-chevron-left"></i> 使用webhooks实现git自动拉取代码
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/09/12/ubuntu18%E5%AE%89%E8%A3%85sublime%E5%8F%8A%E8%A7%A3%E5%86%B3%E4%B8%8D%E8%83%BD%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5/" rel="next" title="ubuntu18安装sublime及解决不能中文输入">
-      ubuntu18安装sublime及解决不能中文输入 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
     
-  </article>
-  
-  
-  
 
-  </div>
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/&title=《ubuntu18添加应用到启动器》 — kala的博客&pic=http://blog.c2wei.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/&title=《ubuntu18添加应用到启动器》 — kala的博客&source=ubuntu18更换了桌面环境为Gnome，二进制文件启动的应用不能固定到dock，如sublime、idea等，需要自己创建启动图标并添加到启动器
+首先..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ubuntu18添加应用到启动器》 — kala的博客&url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/&via=http://blog.c2wei.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
 
 
-          </div>
-          
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
 
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="kala"
-      src="/images/avatar.jpeg">
-  <p class="site-author-name" itemprop="name">kala</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">6</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
 
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">kala</span>
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/09/12/ubuntu18%E5%AE%89%E8%A3%85sublime%E5%8F%8A%E8%A7%A3%E5%86%B3%E4%B8%8D%E8%83%BD%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">ubuntu18安装sublime及解决不能中文输入</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/04/25/%E4%BD%BF%E7%94%A8webhooks%E5%AE%9E%E7%8E%B0git%E8%87%AA%E5%8A%A8%E6%8B%89%E5%8F%96%E4%BB%A3%E7%A0%81/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用webhooks实现git自动拉取代码</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.1.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
 
+        <footer class="footer">
+    <div class="top">
         
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>kala &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/&title=《ubuntu18添加应用到启动器》 — kala的博客&pic=http://blog.c2wei.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/&title=《ubuntu18添加应用到启动器》 — kala的博客&source=ubuntu18更换了桌面环境为Gnome，二进制文件启动的应用不能固定到dock，如sublime、idea等，需要自己创建启动图标并添加到启动器
+首先..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ubuntu18添加应用到启动器》 — kala的博客&url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/&via=http://blog.c2wei.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.c2wei.cn/2018/06/12/ubuntu18%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8%E5%88%B0%E5%90%AF%E5%8A%A8%E5%99%A8/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD+ElEQVR42u3ayW4iQRAEUP7/pz3SnDyyu4nMKBhbepwQS0E/LIVzeTzi28ff2+f7nx+5ek1y/+rZ+8/6+mxy2rEbDhw4cOAILjU5+uqR3Sub109/sOQaceDAgQPHWY7+A+7flQfqfUDmMZ+ELg4cOHDg+L8ceTnXX0ZTvN1/Zxw4cODA8dM4kgbi7oSccnqpOHDgwIHj/Rz5CKdpFOZlW/Ppb+qV4sCBAweOtNp65KH1W+6/fL8DBw4cOHAE8dO03qYxnIyaTl3F5dXhwIEDB46aY7p2MA3g3ZnT4dauMBtUtDhw4MCBY8Ux/Vp5wy4ZTTX0OVnUmsSBAwcOHAXHblC0GwvlAbyLySTUn/xIOHDgwIHjZRz5B5x6V9Pyy1uNg14pDhw4cOAoOJp4S9pzeTW5KwWPRTsOHDhw4DhUJeWxtGPaBWdSsE1HXFEjEgcOHDhw1BzTIU3++t0Iavqtkh9vejIOHDhw4NidPB3eTCMtKfDyYdKONW8s4sCBAweOnmMairsyrCmrpkOs/PsPNvJw4MCBA0fMsWuo5csE0wjflZR5yy/6u8CBAwcOHAXHrkzKyXaBuovVpvn4TQmHAwcOHDhqjlMhev/66fhqXI/e/nhRzOPAgQMHjoIjL6Ka9YXpatpgRBQHeYSLAwcOHDgOcfTrC+MPXkVv3nacxvOT/Q4cOHDgwBFz7Aqh3XCov7wddz64woEDBw4cpzimQdsMjU6dn4+dxm1KHDhw4MDxMo5mtDNdaNitRzyK2+UJOHDgwIGj4NgVVNOlh77B15eL0Wk4cODAgeMoxzRrkvjcLd717cXlj4QDBw4cOA5x5M3B6VrAdPaVF5NNYOPAgQMHjtdxJKOdvJBLYnL35XbLDVWbEgcOHDhwFBy7y+5DerfQkK9H5EA4cODAgeMUR7N2cCqq86bhNIDHPyQOHDhw4Kg5ppfXrNnl0XsqtnftRRw4cODAcYqjX3HLA7JpHeYDreRzqxYhDhw4cOD48pr7Qiu51F2rbhp7+YXtRk1P9jtw4MCBA8eKI2/eTeO2edd0lWE6SPvnWRw4cODAcYhj2hycPrJrCPZjrXGBigMHDhw4ao5mEa3hy9cjkqJuF8xPBk44cODAgWN18sfwthsjTS9j10xMBlFPvjMOHDhw4Kg5drGXL7dNg3xXjE2XMHbxjAMHDhw4co48XJswzgN1MCgq1viWhRwOHDhw4Ig5diE6XTWYRntzwu5fBxw4cODA8U6OZDWhKcz6Z/Mm5uXJOHDgwIHj7RzTgEwodwOtvGAbhC4OHDhw4DjEkTcH82KvWTjILylniv5pwIEDBw4cNUfVShuOhZLzTwX8qX8dcODAgQNHzPEHTzkggjHQXvsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
 
 
 
 
 
 
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '崩溃了 ！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '骗你的 ~';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
 
 </body>
 </html>

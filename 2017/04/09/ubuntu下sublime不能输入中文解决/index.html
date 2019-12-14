@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>ubuntu下sublime不能输入中文解决 | kala的博客 | 个人学习总结、踩坑记录、感悟分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="ubuntu">
+    <meta name="description" content="本文适用于ubuntu16 让sublime支持gbk编码安装convertToUTF8插件首先，按住ctrl+shift+p，然后，在弹出的搜索框中输入install package最后，输入ConvertToUTF8，等待安装安装完成后重启subline Text3即可。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu下sublime不能输入中文解决">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2017&#x2F;04&#x2F;09&#x2F;ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3&#x2F;index.html">
+<meta property="og:site_name" content="kala的博客">
+<meta property="og:description" content="本文适用于ubuntu16 让sublime支持gbk编码安装convertToUTF8插件首先，按住ctrl+shift+p，然后，在弹出的搜索框中输入install package最后，输入ConvertToUTF8，等待安装安装完成后重启subline Text3即可。">
+<meta property="article:published_time" content="2017-04-09T02:45:11.000Z">
+<meta property="article:modified_time" content="2019-12-14T12:40:40.682Z">
+<meta property="article:author" content="kala">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">kala</h5>
+          <a href="mailto:clw_work@163.com" title="clw_work@163.com" class="mail">clw_work@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/kala2c" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ubuntu下sublime不能输入中文解决</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ubuntu下sublime不能输入中文解决</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-09T02:45:11.000Z" itemprop="datePublished" class="page-time">
+  2017-04-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ubuntu/">ubuntu</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#让sublime支持gbk编码"><span class="post-toc-number">1.</span> <span class="post-toc-text">让sublime支持gbk编码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#让sublime支持中文输入法"><span class="post-toc-number">2.</span> <span class="post-toc-text">让sublime支持中文输入法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装sublime没有找到启动器"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装sublime没有找到启动器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Ubuntu安装sublime"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Ubuntu安装sublime</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#下载和添加中文支持共享库"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">下载和添加中文支持共享库</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#将启动命令添加到sublime-desktop"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">将启动命令添加到sublime.desktop</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ubuntu下sublime不能输入中文解决"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ubuntu下sublime不能输入中文解决</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-09 10:45:11" datetime="2017-04-09T02:45:11.000Z"  itemprop="datePublished">2017-04-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/ubuntu/">ubuntu</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文适用于ubuntu16</p>
+<h3 id="让sublime支持gbk编码"><a href="#让sublime支持gbk编码" class="headerlink" title="让sublime支持gbk编码"></a>让sublime支持gbk编码</h3><p>安装convertToUTF8插件<br>首先，按住ctrl+shift+p，<br>然后，在弹出的搜索框中输入install package<br>最后，输入ConvertToUTF8，等待安装<br>安装完成后重启subline Text3即可。</p>
+<a id="more"></a>
+
+<h3 id="让sublime支持中文输入法"><a href="#让sublime支持中文输入法" class="headerlink" title="让sublime支持中文输入法"></a>让sublime支持中文输入法</h3><p>本部分只包含让sublime支持中文输入法</p>
+<p>下载我们需要的文件(在github上有编译好的共享库)，打开终端，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;lyfeyaj&#x2F;sublime-text-imfix.git</span></pre></td></tr></table></figure>
+<p>将subl移动到/usr/bin/，并且将sublime-imfix.so移动到/opt/sublime_text/（sublime的安装目录）<br>终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;sublime-text-imfix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo cp .&#x2F;lib&#x2F;libsublime-imfix.so &#x2F;opt&#x2F;sublime_text&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sudo cp .&#x2F;src&#x2F;subl &#x2F;usr&#x2F;bin&#x2F;</span></pre></td></tr></table></figure>
+<p>用subl命令试试能不能启动sublime，如果成功启动的话，应该就可以输入中文了</p>
+<p>终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl</span></pre></td></tr></table></figure>
+
+<p>将上面的启动命令替换到启动器中</p>
+<p>打开sublime-text.desktop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;share&#x2F;applications&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo vim sublime_text.desktop</span></pre></td></tr></table></figure>
+<p>修改sublime-text.desktop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Version&#x3D;1.0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Type&#x3D;Application</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Name&#x3D;Sublime Text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">GenericName&#x3D;Text Editor</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Comment&#x3D;Sophisticated text editor for code, markup and prose</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">Exec&#x3D;&#x2F;usr&#x2F;bin&#x2F;subl %F &#x2F;&#x2F;此行修改为 Exec&#x3D;bash -c &quot;LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">Terminal&#x3D;false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">MimeType&#x3D;text&#x2F;plain;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">Icon&#x3D;sublime-text</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">Categories&#x3D;TextEditor;Development;Utility;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">StartupNotify&#x3D;true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">Actions&#x3D;Window;Document;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">X-Desktop-File-Install-Version&#x3D;0.22</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">[Desktop Action Window]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">Name&#x3D;New Window</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">Exec&#x3D;&#x2F;usr&#x2F;bin&#x2F;subl -n&#x2F;&#x2F;此行修改为 Exec&#x3D;bash -c &quot;LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">OnlyShowIn&#x3D;Unity;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">[Desktop Action Document]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">Name&#x3D;New File</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">Exec&#x3D;&#x2F;usr&#x2F;bin&#x2F;subl --command new_file&#x2F;&#x2F;此行修改为 Exec&#x3D;bash -c &quot;LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">OnlyShowIn&#x3D;Unity;</span></pre></td></tr></table></figure>
+<p>sublime_text.desktop关键是修改形式为Exec=xxxx这几行，Exec=后跟的为启动器的执行命令</p>
+<h3 id="安装sublime没有找到启动器"><a href="#安装sublime没有找到启动器" class="headerlink" title="安装sublime没有找到启动器"></a>安装sublime没有找到启动器</h3><p>本部分从头开始安装sublime并添加中文输入支持</p>
+<h4 id="Ubuntu安装sublime"><a href="#Ubuntu安装sublime" class="headerlink" title="Ubuntu安装sublime"></a>Ubuntu安装sublime</h4><p>到 sublime官网下载linux可用的sublime_text_3程序包(非安装包)</p>
+<p>解压后得到一个sublime_text_3文件夹</p>
+<p>把文件夹移动到/opt/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv sublime_text_3 &#x2F;opt&#x2F;</span></pre></td></tr></table></figure>
+<p>然后重命名为sublime_text</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv &#x2F;opt&#x2F;sublime_text_3 &#x2F;opt&#x2F;sublime_text</span></pre></td></tr></table></figure>
+<p>在sublime_text文件夹里可以找到一个sublime.desktop复制到桌面上（后面编辑、双击的全是桌面上这个sublime.desktop）</p>
+<p>右击sublime.desktop</p>
+<p>找到属性 改为可执行程序</p>
+<p>这时候双击它应该可以启动sublime</p>
+<h4 id="下载和添加中文支持共享库"><a href="#下载和添加中文支持共享库" class="headerlink" title="下载和添加中文支持共享库"></a>下载和添加中文支持共享库</h4><p>下载我们需要的文件，打开终端，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;lyfeyaj&#x2F;sublime-text-imfix.git</span></pre></td></tr></table></figure>
+<p>将subl移动到/usr/bin/，并且将sublime-imfix.so移动到/opt/sublime_text/（sublime的安装目录）<br>终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;sublime-text-imfix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo cp .&#x2F;lib&#x2F;libsublime-imfix.so &#x2F;opt&#x2F;sublime_text&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sudo cp .&#x2F;src&#x2F;subl &#x2F;usr&#x2F;bin&#x2F;</span></pre></td></tr></table></figure>
+<p>用subl命令试试能不能启动sublime，如果成功启动的话，应该就可以输入中文了。<br>终端输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl</span></pre></td></tr></table></figure>
+<h4 id="将启动命令添加到sublime-desktop"><a href="#将启动命令添加到sublime-desktop" class="headerlink" title="将启动命令添加到sublime.desktop"></a>将启动命令添加到sublime.desktop</h4><p>右击sublime.desktop 选择属性 找到命令一栏<br>改成如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">bash - c &quot;LD_PRELOAD&#x3D;&#x2F;opt&#x2F;sublime_text&#x2F;libsublime-imfix.so subl&quot;</span></pre></td></tr></table></figure>
+<p>这时候双击启动文件启动也能输入中文了</p>
+<p>再从桌面上把sublime.desktop拖放到启动面板里</p>
+<p>完成</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://blog.c2wei.cn">
+            <img src="/img/avatar.jpg" alt="kala">
+            kala
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/&title=《ubuntu下sublime不能输入中文解决》 — kala的博客&pic=http://blog.c2wei.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/&title=《ubuntu下sublime不能输入中文解决》 — kala的博客&source=本文适用于ubuntu16
+让sublime支持gbk编码安装convertToUTF8插件首先，按住ctrl+shift+p，然后，在弹出的搜索框中输入..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ubuntu下sublime不能输入中文解决》 — kala的博客&url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/&via=http://blog.c2wei.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/16/js%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%8A%A8%E7%94%BB/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">js定时器实现动画</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>kala &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/&title=《ubuntu下sublime不能输入中文解决》 — kala的博客&pic=http://blog.c2wei.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/&title=《ubuntu下sublime不能输入中文解决》 — kala的博客&source=本文适用于ubuntu16
+让sublime支持gbk编码安装convertToUTF8插件首先，按住ctrl+shift+p，然后，在弹出的搜索框中输入..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ubuntu下sublime不能输入中文解决》 — kala的博客&url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/&via=http://blog.c2wei.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.c2wei.cn/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAElUlEQVR42u3a227jOBAFwPz/T2eBfc1IOadbBkyn9BSMbYosDsC+8Osrfr7/f67+5Tt4fv7256c/v3k1k6tfXX3avmX4YMKECROmt2RKlnfPdD/O/a+ulppsWPLG2Qj/GAcTJkyYMB3O1A63Odpb4nbz8g1O1o4JEyZMmP4OU06ZBxz7zbgPBWZpMCZMmDBh+ptMSQm1Pf7bEvP9bBNKTJgwYcL0N5nyozrnaH/bFmpnKfHLa+GYMGHChOnNmDZH8ul/v/B+EyZMmDBhegOm7/LZp8H3xdZnU+I8Sf5l1ZgwYcKE6Vim2Qs2SW97MG+akXlwEM0KEyZMmDAdyJQXRpPSaj7FzfPU8Z9vBiZMmDBhOp0pb+nNvj9LYnOU2TeLOWDChAkTpmOZ9pdj8uLscBLlu57t6GLChAkTptOZ8vSyDQ7aovAsIGjDl+TTyyIvJkyYMGE6kGl/9LatyoQjDzvabW5Lz5gwYcKE6XSmPAVtj/+nysH3Y85S6/rtmDBhwoTpcKb7oduUsj1u20/zVmW7VcX9JkyYMGHCdAhTfujOFrO5gpMHIm3oMGupYsKECROm05k25dp25Py3T5G1QFGpFxMmTJgwHcKUf7xpH86apnuyzSq+ZoqYMGHChOktmfJybVLwzVPKp5LhTTu2SJsxYcKECdNRTPlxngcBLcFsAbNtS2b+j78xYcKECdOxTM9ON2+Czoqwe7JVExQTJkyYMH0E0yZZzS/6tM+zG9MmyZgwYcKE6Vym/PLKPg3ej9km24+9CxMmTJgwHcs0LHcuyrhJkHGf4kYxThBM5GvEhAkTJkznMs1agy3H7GJNPs/ZlhSzxYQJEyZMhzM9VX5tx3nFe/PApSgrY8KECROmj2Mq8uYy1ZyVfZNsNEme68Lu/VQwYcKECdPbM7XtyVkpdjbC5oJse1012iRMmDBhwnQsU166bV+TtyrbRbal6rZpWneAMWHChAnTWzLN0s68eFrv0npWeYO26FdiwoQJE6ZjmfKDvy255t95qji75/hlpZgwYcKE6UCmJJlsU8q88Jof27MS81PfwYQJEyZM5zK1Rd5Z4TUPPtoR2jBiFgZhwoQJE6bTmWY0edm3vRjUlnGTonDbNL1samLChAkTpsOZZof9pqjajjNL1/Nt+NrvPyZMmDBhehum2dE7ax8mB3Pyd1u03fyHwIQJEyZMn8E0u++zn0SSrOZHe1uSzsMUTJgwYcJ0OtPrmpd5qfeXAms8Zl4mzgvEmDBhwoTpM5jy47N+TZnKtgFKfQUnSLN/aWRiwoQJE6ZDmNqptBdo9g3FZANm13TakjcmTJgwYTqR6bt8kqO9XcxT2/PCDcOECRMmTMcyPXtLc9/43HQPkzDigaQXEyZMmDAdyNQGAW0rMS+zJsvLy8qzd12uGhMmTJgwHc7UDr1Z2Kbwmm/JpqyMCRMmTJj+JlN+wLfpcZ4k5y3PNu9/LCDAhAkTJkwfylS88qEEePYvbUiBCRMmTJg+g6ktoc7KwbOEdn8ppyjmXv1XwIQJEyZMxzJtLu7kbcXNCK8r5uaBCyZMmDBhOpDpP71ayotimtD0AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '崩溃了 ！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '骗你的 ~';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
