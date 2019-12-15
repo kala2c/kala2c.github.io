@@ -21,14 +21,14 @@
     
     
     <meta name="keywords" content="javascript">
-    <meta name="description" content="现在网页动画效果有css3，有jquery的animate函数，可以方便的写出各种绚丽的效果。 但是，动画效果是怎么实现的？ 先看动画效果demo:js动画">
+    <meta name="description" content="现在网页动画效果有css3，有jquery的animate函数，可以方便的写出各种绚丽的效果。 但是，动画效果是怎么实现的？ 先看动画效果demo:js动画 动画实现原理动画片是通过一帧一帧的连续的图片生成的，js动画也是同理，例如网页中有个方块： 1#box &amp;#123;2  width: 100px;3  height: 200px;4  background-color: yellow;5&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js定时器实现动画">
 <meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2017&#x2F;04&#x2F;16&#x2F;js%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%8A%A8%E7%94%BB&#x2F;index.html">
 <meta property="og:site_name" content="kala的博客">
-<meta property="og:description" content="现在网页动画效果有css3，有jquery的animate函数，可以方便的写出各种绚丽的效果。 但是，动画效果是怎么实现的？ 先看动画效果demo:js动画">
+<meta property="og:description" content="现在网页动画效果有css3，有jquery的animate函数，可以方便的写出各种绚丽的效果。 但是，动画效果是怎么实现的？ 先看动画效果demo:js动画 动画实现原理动画片是通过一帧一帧的连续的图片生成的，js动画也是同理，例如网页中有个方块： 1#box &amp;#123;2  width: 100px;3  height: 200px;4  background-color: yellow;5&amp;">
 <meta property="article:published_time" content="2017-04-16T11:33:09.000Z">
-<meta property="article:modified_time" content="2019-12-14T12:41:48.819Z">
+<meta property="article:modified_time" content="2019-12-15T12:01:17.096Z">
 <meta property="article:author" content="kala">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -178,8 +178,6 @@
             <p>现在网页动画效果有css3，有jquery的animate函数，可以方便的写出各种绚丽的效果。</p>
 <p>但是，动画效果是怎么实现的？</p>
 <p>先看动画效果demo:<a href="http://c2wei.cn/animation" target="_blank" rel="noopener">js动画</a></p>
-<a id="more"></a>
-
 <h3 id="动画实现原理"><a href="#动画实现原理" class="headerlink" title="动画实现原理"></a>动画实现原理</h3><p>动画片是通过一帧一帧的连续的图片生成的，js动画也是同理，例如网页中有个方块：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#box</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attribute">background-color</span>: yellow;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 

@@ -240,7 +240,10 @@ hexo基于nodejs驱动，因此开始前本地先配置好nodejs环境，服务�
     
         ubuntu18更换了桌面环境，配置sublime启动器时略有不同，大概安装和ubuntu16一致
 本文从头开始安装sublime并添加中文输入支持
-安装sublime
+安装sublime到 sublime官网下载linux可用的sublime_text_3程序包(非安装包)
+解压后得到一个sublime_text_3文件夹
+把文件夹移动到/opt/
+1mv sublime_text_3 &#x2F;opt&#...
     
 
         <a href="/2018/09/12/ubuntu18%E5%AE%89%E8%A3%85sublime%E5%8F%8A%E8%A7%A3%E5%86%B3%E4%B8%8D%E8%83%BD%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5/" class="post-more waves-effect waves-button">
@@ -386,7 +389,11 @@ hexo基于nodejs驱动，因此开始前本地先配置好nodejs环境，服务�
     
         将要自动拉取代码的仓库克隆到服务器，记住位置
 以下示例用的仓库服务器地址为/home/wwwroot/website
-查看服务器执行php使用的用户
+查看服务器执行php使用的用户编辑php.ini，确保system,shell_exec函数没有被禁用
+通过如下php脚本查看服务器是用哪个用户执行php程序的
+1&lt;?php2system("whoami");
+
+浏览器请求这个php文件，可以看到结果，我的是www用户...
     
 
         <a href="/2017/04/25/%E4%BD%BF%E7%94%A8webhooks%E5%AE%9E%E7%8E%B0git%E8%87%AA%E5%8A%A8%E6%8B%89%E5%8F%96%E4%BB%A3%E7%A0%81/" class="post-more waves-effect waves-button">
@@ -434,6 +441,8 @@ hexo基于nodejs驱动，因此开始前本地先配置好nodejs环境，服务�
         现在网页动画效果有css3，有jquery的animate函数，可以方便的写出各种绚丽的效果。
 但是，动画效果是怎么实现的？
 先看动画效果demo:js动画
+动画实现原理动画片是通过一帧一帧的连续的图片生成的，js动画也是同理，例如网页中有个方块：
+1#box &#123;2  width: 100px;3  height: 200px;4  background-color: yellow...
     
 
         <a href="/2017/04/16/js%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%8A%A8%E7%94%BB/" class="post-more waves-effect waves-button">
@@ -482,6 +491,8 @@ hexo基于nodejs驱动，因此开始前本地先配置好nodejs环境，服务�
     
         本文适用于ubuntu16
 让sublime支持gbk编码安装convertToUTF8插件首先，按住ctrl+shift+p，然后，在弹出的搜索框中输入install package最后，输入ConvertToUTF8，等待安装安装完成后重启subline Text3即可。
+让sublime支持中文输入法本部分只包含让sublime支持中文输入法
+下载我们需要的文件(在github上有编译...
     
 
         <a href="/2017/04/09/ubuntu%E4%B8%8Bsublime%E4%B8%8D%E8%83%BD%E8%BE%93%E5%85%A5%E4%B8%AD%E6%96%87%E8%A7%A3%E5%86%B3/" class="post-more waves-effect waves-button">
