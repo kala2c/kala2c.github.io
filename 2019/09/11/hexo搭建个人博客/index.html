@@ -21,14 +21,14 @@
     
     
     <meta name="keywords" content="hexo,博客">
-    <meta name="description" content="hexo是一个简介高效美观的静态博客，拥有许多主题和拓展，功能丰富，部署和写作方便，完美支持md。 hexo基于nodejs驱动，因此开始前先配置好nodejs环境。 安装主题过程和博客部署需要git，因此先安装好git并了解基本操作。 以下为安装配置hexo、安装next主题美化、及写作并发布到服务器的过程。">
+    <meta name="description" content="hexo是一个简洁高效美观的静态博客，拥有许多主题和拓展，功能丰富，部署和写作方便，完美支持md。 hexo基于nodejs驱动，因此开始前本地先配置好nodejs环境，服务器仅需要一个服务器软件（推荐nginx）。 以下为安装配置hexo、安装next主题美化、及写作并发布到服务器的过程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo搭建个人博客">
 <meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2019&#x2F;09&#x2F;11&#x2F;hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2&#x2F;index.html">
 <meta property="og:site_name" content="kala的博客">
-<meta property="og:description" content="hexo是一个简介高效美观的静态博客，拥有许多主题和拓展，功能丰富，部署和写作方便，完美支持md。 hexo基于nodejs驱动，因此开始前先配置好nodejs环境。 安装主题过程和博客部署需要git，因此先安装好git并了解基本操作。 以下为安装配置hexo、安装next主题美化、及写作并发布到服务器的过程。">
+<meta property="og:description" content="hexo是一个简洁高效美观的静态博客，拥有许多主题和拓展，功能丰富，部署和写作方便，完美支持md。 hexo基于nodejs驱动，因此开始前本地先配置好nodejs环境，服务器仅需要一个服务器软件（推荐nginx）。 以下为安装配置hexo、安装next主题美化、及写作并发布到服务器的过程。">
 <meta property="article:published_time" content="2019-09-11T10:16:06.000Z">
-<meta property="article:modified_time" content="2019-12-13T04:40:14.485Z">
+<meta property="article:modified_time" content="2019-12-15T11:51:51.463Z">
 <meta property="article:author" content="kala">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="博客">
@@ -176,9 +176,8 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>hexo是一个简介高效美观的静态博客，拥有许多主题和拓展，功能丰富，部署和写作方便，完美支持md。</p>
-<p>hexo基于nodejs驱动，因此开始前先配置好nodejs环境。</p>
-<p>安装主题过程和博客部署需要git，因此先安装好git并了解基本操作。</p>
+            <p>hexo是一个简洁高效美观的静态博客，拥有许多主题和拓展，功能丰富，部署和写作方便，完美支持md。</p>
+<p>hexo基于nodejs驱动，因此开始前本地先配置好nodejs环境，服务器仅需要一个服务器软件（推荐nginx）。</p>
 <p>以下为安装配置hexo、安装next主题美化、及写作并发布到服务器的过程。</p>
 <a id="more"></a>
 
@@ -239,7 +238,7 @@
 <p>但是需要先配置服务器信息</p>
 <h3 id="部署到服务器"><a href="#部署到服务器" class="headerlink" title="部署到服务器"></a>部署到服务器</h3><p>hexo的一键部署功能可以方便的将生成的静态文件推送到远程git仓库(或是其它库)</p>
 <p>我使用webhooks完成网站在服务器的自动更新部署</p>
-<p>本文用的是gitee，使用github参考我另一篇笔记</p>
+<p>本文用的是gitee，使用github基本一样，<a href="http://blog.c2wei.cn/2017/04/25/%E4%BD%BF%E7%94%A8webhooks%E5%AE%9E%E7%8E%B0git%E8%87%AA%E5%8A%A8%E6%8B%89%E5%8F%96%E4%BB%A3%E7%A0%81/">github-webhooks</a></p>
 <h4 id="添加git仓库地址到hexo配置"><a href="#添加git仓库地址到hexo配置" class="headerlink" title="添加git仓库地址到hexo配置"></a>添加git仓库地址到hexo配置</h4><p>首先在gitee网站建立一个git仓库</p>
 <p>然后修改本地配置文件_config.yml</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Deployment</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  type: &#39;git&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  repo: &#39;https:&#x2F;&#x2F;gitee.com&#x2F;username&#x2F;blog-hexo.git&#39; #git仓库地址</span></pre></td></tr></table></figure>
