@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="kala的博客">
 <meta property="og:description" content="今年年初时，工信部发布通知，在全国范围内对互联网网络接入服务市场开展清理规范工作， 其中重要的一条就是处理各种vpn服务商。 著名的greenvpn在七月份的时候停止服务了，于是我傻乎乎的又从网上随便选择了一家机场，结果刚用了一个月多，人家就关站跑路了，买了半年的，剩下的钱也无处可寻。 几十块钱是小事，但是不能不用谷歌了，还是要科学上网呀。既然机场不再可靠，那就自己搭梯子 购买国外服务器既然要搭梯">
 <meta property="article:published_time" content="2017-09-15T13:05:56.000Z">
-<meta property="article:modified_time" content="2019-12-15T11:57:38.705Z">
+<meta property="article:modified_time" content="2019-12-16T08:35:42.405Z">
 <meta property="article:author" content="kala">
 <meta property="article:tag" content="vpn">
 <meta property="article:tag" content="翻墙">
@@ -191,6 +191,9 @@
 <p>服务端我用的go语言版的二进制程序包，感觉还不错</p>
 <p>server端配置，登录服务器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh root@server_ip</span></pre></td></tr></table></figure>
+
+<p>关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span></pre></td></tr></table></figure>
 
 <p>下载shadowsocks-go</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;shadowsocks&#x2F;shadowsocks-go&#x2F;releases&#x2F;download&#x2F;1.2.1&#x2F;shadowsocks-server.tar.gz</span></pre></td></tr></table></figure>
