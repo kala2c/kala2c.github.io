@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="kala的博客">
 <meta property="og:description" content="docker是什么先摘一段官方的解释： Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从Apache2.0协议开源。 Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。 容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。 我看完了，e">
 <meta property="article:published_time" content="2018-06-10T11:40:31.000Z">
-<meta property="article:modified_time" content="2019-12-15T12:47:28.955Z">
+<meta property="article:modified_time" content="2019-12-17T10:58:19.147Z">
 <meta property="article:author" content="kala">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">docker是什么</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何使用docker"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何使用docker</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装启用docker"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装启用docker</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#部署项目"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">部署项目</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#其他一些操作"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">其他一些操作</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用反向代理"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用反向代理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#更多姿势"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">更多姿势</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#docker是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">docker是什么</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何使用docker"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何使用docker</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装启用docker"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">安装启用docker</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#部署项目"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">部署项目</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一些常用命令"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">一些常用命令</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用反向代理"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用反向代理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#更多姿势"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">更多姿势</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -181,9 +181,10 @@
 <p>容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。</p>
 <p>我看完了，emmmm这到底是个啥玩意，只是听说有了这个可以简化部署就来了，可这到底是个啥……</p>
 <p>这个东西有一点像虚拟机，但是性能开销远小于虚拟机，docker有镜像和容器，镜像就像是系统的镜像，并且包含了环境和一些特定配置。然后可以选择一个镜像来启动一个容器（类似于类-&gt;对象），然后我们将自己的应用程序放到容器里。</p>
+<p><strong>重点就是，可以解决配置环境不兼容的问题，简化部署</strong></p>
 <p>举一个最简单的例子，我的服务器是nginx+php7+mysql5.7的环境，并且运行着好几个网站，现在拿到了一个老网站，它只能用apache+php5.4+mysql5来运行，可我又没有其它服务器，又必须要把它跑起来，这时候怎么办？</p>
 <p>当然重构这个网站是一定不可能的，所以……</p>
-<p>是的，就用docker解决这个问题，我们选取一个带有apache+php5.4+mysql5的docker镜像，然后启动一个容器，将这个老项目放到这个容器中，然后就可以运行了。现在我们开始做这件事。</p>
+<p>是的，就用docker解决这个问题，我们选取一个带有apache+php5.4+mysql5的docker镜像，然后用这个镜像城建一个容器，或者自己编写Dockerfile文件创建一个容器，将老项目放到容器中，就可以解决问题了。</p>
 <h3 id="如何使用docker"><a href="#如何使用docker" class="headerlink" title="如何使用docker"></a>如何使用docker</h3><h4 id="安装启用docker"><a href="#安装启用docker" class="headerlink" title="安装启用docker"></a>安装启用docker</h4><p>首先，安装docker</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wget -qO- https:&#x2F;&#x2F;get.docker.com&#x2F; | sh</span></pre></td></tr></table></figure>
 
@@ -202,9 +203,9 @@
 <h4 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h4><p>搜索符合我们要求的镜像</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo docker search 关键字</span></pre></td></tr></table></figure>
 
-<p>我搜索关键字为php54，找到fbender/php54-apache-mysql镜像符合要求</p>
-<p>拉取符合要求的镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo docker pull 镜像名字</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">如：sudo docker pull fbender&#x2F;php54-apache-mysql</span></pre></td></tr></table></figure>
+<p>我搜索关键字为php54，找到fbender/php54-apache-mysql镜像符合要求（那我就不编写Dockerfile了）</p>
+<p>拉取镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo docker pull fbender&#x2F;php54-apache-mysql</span></pre></td></tr></table></figure>
 
 <p>下载完成后，启动容器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo docker run --name 自定义名称 -v ～&#x2F;docker&#x2F;www:&#x2F;var&#x2F;www&#x2F;html -d fbender&#x2F;php54-apache-mysql</span></pre></td></tr></table></figure>
@@ -219,7 +220,7 @@
 
 <p>我分配到的是172.17.0.3</p>
 <p>浏览器输入172.17.0.3然后回车，这个老网站就出来了（服务器上当然没这个操作，ping一下或者curl吧）</p>
-<h4 id="其他一些操作"><a href="#其他一些操作" class="headerlink" title="其他一些操作"></a>其他一些操作</h4><p>查看当前运行中的容器</p>
+<h4 id="一些常用命令"><a href="#一些常用命令" class="headerlink" title="一些常用命令"></a>一些常用命令</h4><p>查看当前运行中的容器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo docker ps</span></pre></td></tr></table></figure>
 
 <p>查看运行中的容器（-a表示包括停止运行的）</p>
@@ -232,44 +233,44 @@
 <p>删除一个容器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo docker container rm 容器id或自定名称</span></pre></td></tr></table></figure>
 
-<p>以命令行交互模式打开容器(就是进入一个linux，通常是ubuntu)</p>
+<p>以命令行交互模式打开容器(会打开一个伪终端)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1.第一次运行时</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo docker run -it 镜像名称 bash</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">2.运行中的</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sudo docker exec -it 容器id或自定名称 bash</span></pre></td></tr></table></figure>
 
 <h3 id="使用反向代理"><a href="#使用反向代理" class="headerlink" title="使用反向代理"></a>使用反向代理</h3><p>以上我们可以用一个ip访问，这样肯定达不到部署的要求</p>
 <p>为了用域名访问，用nginx的反向代理功能吧</p>
 <p>新建一个nginx的虚拟主机，配置如下</p>
-<pre><code> server 
- {
- listen 80;
- #listen [::]:80;
- server_name 虚拟主机的域名 ;
- index index.html index.htm index.php;
- location / {
-     proxy_pass  http://docker分配到的ip;
+<pre><code>    server 
+    {
+    listen 80;
+    #listen [::]:80;
+    server_name 虚拟主机的域名 ;
+    index index.html index.htm index.php;
+    location / {
+        proxy_pass  http://docker分配到的ip;
 
-     #Proxy Settings
-     proxy_redirect     off;
-     proxy_set_header   Host             $host;
-     proxy_set_header   X-Real-IP        $remote_addr;
-     proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-     proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
-     proxy_max_temp_file_size 0;
-     proxy_connect_timeout      90;
-     proxy_send_timeout         90;
-     proxy_read_timeout         90;
-     proxy_buffer_size          4k;
-     proxy_buffers              4 32k;
-     proxy_busy_buffers_size    64k;
-     proxy_temp_file_write_size 64k;
-}
+        #Proxy Settings
+        proxy_redirect     off;
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+        proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
+        proxy_max_temp_file_size 0;
+        proxy_connect_timeout      90;
+        proxy_send_timeout         90;
+        proxy_read_timeout         90;
+        proxy_buffer_size          4k;
+        proxy_buffers              4 32k;
+        proxy_busy_buffers_size    64k;
+        proxy_temp_file_write_size 64k;
+   }
 }</code></pre><h4 id="更多姿势"><a href="#更多姿势" class="headerlink" title="更多姿势"></a>更多姿势</h4><p>以上是一个比较简单的使用，docker的功能非常强</p>
 <p>官方文档：<a href="https://docs.docker.com/" target="_blank" rel="noopener">https://docs.docker.com/</a></p>
 <p>推荐网址：<a href="http://www.docker.org.cn/" target="_blank" rel="noopener">http://www.docker.org.cn/</a></p>
 <p>阮一峰大大的入门文章：</p>
 <p><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></p>
 <p><a href="http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html</a></p>
-<p>在上例中，如果只是对php有特定要求（或其他应用），完全可以只含有php的docker镜像</p>
-<p>也可以创建包含自己应用的docker镜像，还要继续学习~</p>
+<p>在上例中，只是对php有特定要求，其实完全可以配置只含有php的docker镜像</p>
+<p>而且docker完全可以为项目量身定制容器，还要继续学习呀~</p>
 
         </div>
 
