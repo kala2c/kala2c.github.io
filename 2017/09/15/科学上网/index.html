@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="kala的博客">
 <meta property="og:description" content="今年年初时，工信部发布通知，在全国范围内对互联网网络接入服务市场开展清理规范工作， 其中重要的一条就是处理各种vpn服务商。 著名的greenvpn在七月份的时候停止服务了，于是我傻乎乎的又从网上随便选择了一家机场，买了半年的，结果刚用了一个月多，人家就关站跑路了，剩下的钱也无处可退。 几十块钱是小事，但是谷歌得用吧，即使没有诗和远方，也要有梯子科学上网。 既然机场不再可靠，那就自己搭梯子 概要通">
 <meta property="article:published_time" content="2017-09-15T13:05:56.000Z">
-<meta property="article:modified_time" content="2019-12-23T14:48:39.427Z">
+<meta property="article:modified_time" content="2019-12-24T04:13:49.353Z">
 <meta property="article:author" content="kala">
 <meta property="article:tag" content="vpn">
 <meta property="article:tag" content="翻墙">
@@ -181,15 +181,16 @@
 <p>著名的greenvpn在七月份的时候停止服务了，于是我傻乎乎的又从网上随便选择了一家机场，买了半年的，结果刚用了一个月多，人家就关站跑路了，剩下的钱也无处可退。</p>
 <p>几十块钱是小事，但是谷歌得用吧，即使没有诗和远方，也要有梯子科学上网。</p>
 <p>既然机场不再可靠，那就自己搭梯子</p>
-<h4 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h4><p>通过一款名为shadowsocks的软件，这是一款著名的开源代理软件，简称ss，搭梯子神器，很多机场也用的这个软件</p>
+<h4 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h4><p>通过一款名为shadowsocks的软件，这是一个著名的开源代理协议，简称ss，其软件已经被众多开发者用各种语言编写了出来，是搭梯子神器，因为软件符号是个纸飞机，所以就有了“机场”的叫法</p>
 <p>基本过程是需要一台国外服务器作为”梯子“，把我们的设备 如手机电脑 和国外服务器连接起来，让我们的设备通过国外服务器访问外面的世界，这台国外服务器的要求就是我们的本地设备可以访问到（没有被墙）</p>
 <p>shadowsocks软件分为客户端和服务端两个部分，服务端安装在梯子服务器上，客户端安装在我们的电脑或手机上，客户端和服务端通过神器的方式相连接，连接起本地设备和梯子服务器</p>
-<p>服务端安装需要略作配置，客户端和平时装软件没有任何区别</p>
-<h4 id="购买国外服务器"><a href="#购买国外服务器" class="headerlink" title="购买国外服务器"></a>购买国外服务器</h4><p>既然要搭梯子，那需要一个位于国外的服务器来做梯子</p>
+<p>也就是说 国外服务器是本地设备和外面世界的一个中转站</p>
+<p>ss服务端安装需要略作配置，客户端和平时装软件没有任何区别</p>
+<h4 id="购买国外服务器"><a href="#购买国外服务器" class="headerlink" title="购买国外服务器"></a>购买国外服务器</h4><p>购买国外服务器可以从国内外vps提供商，云计算实例提供商等那里购买，只要机房位于境外即可</p>
 <p>以下两家服务器提供商还不错，且都可以用支付宝支付：</p>
 <p>搬瓦工：<a href="https://bandwagonhost.com/" target="_blank" rel="noopener">https://bandwagonhost.com/</a></p>
 <p>Vultr: <a href="https://www.vultr.com/" target="_blank" rel="noopener">https://www.vultr.com/</a></p>
-<p>服务器配置不用多好，单核就够用，带宽尽量大，直接和网速挂钩</p>
+<p>服务器配置不用多好，单核就够用，带宽尽量大，带宽直接和网速挂钩</p>
 <p>vps或者低配云计算实例都可以，总之找最便宜的买</p>
 <p>尽量支持IPv4，系统安装centos7 64位，记住服务器的公网ip和登录密码</p>
 <h4 id="服务器配置shadowsocks"><a href="#服务器配置shadowsocks" class="headerlink" title="服务器配置shadowsocks"></a>服务器配置shadowsocks</h4><p>服务端我用的go语言版的二进制程序包，感觉还不错</p>
