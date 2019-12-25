@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>php安装拓展 | kala的博客 | 个人学习笔记、踩坑记录、感悟分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="php">
+    <meta name="description" content="php功能强大、开发效率高的很大一个原因就是它有丰富的拓展包，php拓展基于c语言和zend引擎编写，且php拓展在php代码执行前已经加载完成，因此性能很好 通过php -m命令可以查看当前php环境中安装了哪些拓展 也可以通过php_info函数查看，编写如下脚本 1&lt;?php2php_info();  放到网站目录下，在浏览器中打开，可以详细的看到php和拓展的相关信息 一般来说，是不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php安装拓展">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2017&#x2F;07&#x2F;15&#x2F;php%E5%AE%89%E8%A3%85%E6%8B%93%E5%B1%95&#x2F;index.html">
+<meta property="og:site_name" content="kala的博客">
+<meta property="og:description" content="php功能强大、开发效率高的很大一个原因就是它有丰富的拓展包，php拓展基于c语言和zend引擎编写，且php拓展在php代码执行前已经加载完成，因此性能很好 通过php -m命令可以查看当前php环境中安装了哪些拓展 也可以通过php_info函数查看，编写如下脚本 1&lt;?php2php_info();  放到网站目录下，在浏览器中打开，可以详细的看到php和拓展的相关信息 一般来说，是不">
+<meta property="og:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;.cn&#x2F;&#x2F;0.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;.cn&#x2F;&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;.cn&#x2F;&#x2F;2.png">
+<meta property="article:published_time" content="2017-07-15T02:24:17.000Z">
+<meta property="article:modified_time" content="2019-12-25T08:20:10.057Z">
+<meta property="article:author" content="kala">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;.cn&#x2F;&#x2F;0.png">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">kala</h5>
+          <a href="mailto:clw_work@163.com" title="clw_work@163.com" class="mail">clw_work@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">php安装拓展</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">php安装拓展</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-15T02:24:17.000Z" itemprop="datePublished" class="page-time">
+  2017-07-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#下载拓展"><span class="post-toc-number">1.</span> <span class="post-toc-text">下载拓展</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#安装拓展"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装拓展</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-php安装拓展"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">php安装拓展</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-15 10:24:17" datetime="2017-07-15T02:24:17.000Z"  itemprop="datePublished">2017-07-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>php功能强大、开发效率高的很大一个原因就是它有丰富的拓展包，php拓展基于c语言和zend引擎编写，且php拓展在php代码执行前已经加载完成，因此性能很好</p>
+<p>通过<code>php -m</code>命令可以查看当前php环境中安装了哪些拓展</p>
+<p>也可以通过<code>php_info</code>函数查看，编写如下脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;?php</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">php_info();</span></pre></td></tr></table></figure>
+
+<p>放到网站目录下，在浏览器中打开，可以详细的看到php和拓展的相关信息</p>
+<p>一般来说，是不需要手动安装拓展的，因为php环境在一开始安装时往往就添加好了常用拓展，但在开发中也总会遇到需要再添加拓展的时候，比如redis、fileinfo等一些拓展</p>
+<h5 id="下载拓展"><a href="#下载拓展" class="headerlink" title="下载拓展"></a>下载拓展</h5><p>php的拓展在pecl网站：<a href="http://pecl.php.net/基本都可以找到，搜索所需要的拓展，并下载相应版本" target="_blank" rel="noopener">http://pecl.php.net/基本都可以找到，搜索所需要的拓展，并下载相应版本</a></p>
+<p>以redis为例，在网站右上角的输入框中输入redis，回车搜索</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/.cn//0.png" alt="fig0" title>
+                </div>
+                <div class="image-caption">fig0</div>
+            </figure>
+
+<p>在搜索结果中找到redis，这里只有一条，点击进入</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/.cn//1.png" alt="fig1" title>
+                </div>
+                <div class="image-caption">fig1</div>
+            </figure>
+
+<p>可以看到许多版本，选择对应版本，unix下载tgz文件，windows下载dll，我的环境是centos就下载tgz</p>
+<p>我下载了最新稳定版本3.1.2</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/.cn//2.png" alt="fig2" title>
+                </div>
+                <div class="image-caption">fig2</div>
+            </figure>
+
+<p>下载命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wget -c http:&#x2F;&#x2F;pecl.php.net&#x2F;get&#x2F;redis-3.1.2.tgz</span></pre></td></tr></table></figure>
+
+<h5 id="安装拓展"><a href="#安装拓展" class="headerlink" title="安装拓展"></a>安装拓展</h5><p>安装拓展需要php-dev工具包，我用的lnmp环境已经自带</p>
+<p>解压.tgz文件得到拓展源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tar zxvf redis-3.1.2.tgz</span></pre></td></tr></table></figure>
+
+<p>进入源码目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd redis-3.1.2.tgz</span></pre></td></tr></table></figure>
+
+<p>执行phpize</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">phpize</span></pre></td></tr></table></figure>
+
+<p>会得到类似以下的输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[root@ali redis-3.1.2]# phpize</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Configuring for:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">PHP Api Version:         20170718</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Zend Module Api No:      20170718</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Zend Extension Api No:   320170718</span></pre></td></tr></table></figure>
+
+<p>然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">.&#x2F;configure --with-php-config&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;bin&#x2F;php-config  #注意更改php-config地址</span></pre></td></tr></table></figure>
+
+<p>注意修改php-config为自己的地址，这个地址因环境而已，lnmp默认是以上的地址</p>
+<p>没有提示错误就可以下一步了，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span></pre></td></tr></table></figure>
+
+<p>当前登录用户不是root的话执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">make &amp;&amp; sudo make install</span></pre></td></tr></table></figure>
+
+<p>输出结果的最后类似以下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Build complete.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Don&#39;t forget to run &#39;make test&#39;.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Installing shared extensions: &#x2F;usr&#x2F;local&#x2F;php&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20170718&#x2F;</span></pre></td></tr></table></figure>
+
+<p>下载的拓展代码已经编译为了so文件，下一步要将so添加到php.ini中</p>
+<p>复制拓展上一步拓展安装位置，编辑<code>php.ini</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vim &#x2F;usr&#x2F;local&#x2F;php&#x2F;etc&#x2F;php.ini</span></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">extension&#x3D;&#x2F;usr&#x2F;local&#x2F;php&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20170718&#x2F;redis.so</span></pre></td></tr></table></figure>
+
+<p>保存重启php，执行<code>php -m</code>，如果列表中有redis说明已经添加好了</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://blog.c2wei.cn">
+            <img src="/img/avatar.jpg" alt="kala">
+            kala
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/15/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">科学上网</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/11/%E9%85%8D%E7%BD%AEssh-config%E4%BD%BF%E7%94%A8%E5%88%AB%E5%90%8D%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">配置ssh-config使用别名连接服务器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>kala &copy; 2017 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
