@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>js防抖与节流 | kala的博客 | 个人学习笔记、踩坑记录、感悟分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="为什么防抖和节流在使用一些js事件时，比如scroll、mousewheel、resize等，这些事件会频繁的触发，频繁调用回调函数，我们希望控制回调函数触发频率，这需要防抖和节流。 在做搜索推荐或一些秒杀抢购场景中，频繁的输入变化或按钮点击会导致后端API被频繁调用，产生大量请求，这时候也需要防抖和节流。 防抖和节流是什么防抖和节流简单来说就是控制函数被调用的频率：  节流是函数每K秒被调用一次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js防抖与节流">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2017&#x2F;04&#x2F;21&#x2F;js%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81&#x2F;index.html">
+<meta property="og:site_name" content="kala的博客">
+<meta property="og:description" content="为什么防抖和节流在使用一些js事件时，比如scroll、mousewheel、resize等，这些事件会频繁的触发，频繁调用回调函数，我们希望控制回调函数触发频率，这需要防抖和节流。 在做搜索推荐或一些秒杀抢购场景中，频繁的输入变化或按钮点击会导致后端API被频繁调用，产生大量请求，这时候也需要防抖和节流。 防抖和节流是什么防抖和节流简单来说就是控制函数被调用的频率：  节流是函数每K秒被调用一次">
+<meta property="article:published_time" content="2017-04-21T03:20:18.000Z">
+<meta property="article:modified_time" content="2020-02-02T08:52:31.435Z">
+<meta property="article:author" content="kala">
+<meta property="article:tag" content="javascript">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">kala</h5>
+          <a href="mailto:clw_work@163.com" title="clw_work@163.com" class="mail">clw_work@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">js防抖与节流</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">js防抖与节流</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-04-21T03:20:18.000Z" itemprop="datePublished" class="page-time">
+  2017-04-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么防抖和节流"><span class="post-toc-number">1.</span> <span class="post-toc-text">为什么防抖和节流</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#防抖和节流是什么"><span class="post-toc-number">2.</span> <span class="post-toc-text">防抖和节流是什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#防抖和节流怎么做"><span class="post-toc-number">3.</span> <span class="post-toc-text">防抖和节流怎么做</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#用定时器实现一个简单的防抖"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">用定时器实现一个简单的防抖</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#用时间戳实现一个简单的节流"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">用时间戳实现一个简单的节流</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-js防抖与节流"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">js防抖与节流</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-04-21 11:20:18" datetime="2017-04-21T03:20:18.000Z"  itemprop="datePublished">2017-04-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="为什么防抖和节流"><a href="#为什么防抖和节流" class="headerlink" title="为什么防抖和节流"></a>为什么防抖和节流</h4><p>在使用一些js事件时，比如scroll、mousewheel、resize等，这些事件会频繁的触发，频繁调用回调函数，我们希望控制回调函数触发频率，这需要防抖和节流。</p>
+<p>在做搜索推荐或一些秒杀抢购场景中，频繁的输入变化或按钮点击会导致后端API被频繁调用，产生大量请求，这时候也需要防抖和节流。</p>
+<h4 id="防抖和节流是什么"><a href="#防抖和节流是什么" class="headerlink" title="防抖和节流是什么"></a>防抖和节流是什么</h4><p>防抖和节流简单来说就是控制函数被调用的频率：</p>
+<ul>
+<li>节流是函数每K秒被调用一次。如scroll事件，不停的滚动屏幕，回调函数每1秒执行一次</li>
+<li>防抖是某个连续的用户行为或事件停止时调用函数，即K秒内用户行为或事件没有发生。如scroll事件，不停的滚动屏幕，当屏幕停止滚动时调用回调函数，判断停止的条件就是1s内屏幕没有滚动</li>
+</ul>
+<p>从事件触发角度解释：</p>
+<ul>
+<li>节流是事件频繁触发，每K秒执行一次回调函数</li>
+<li>防抖是事件频繁触发，在最后一次事件结束K秒后触发事件，如果K秒内再次触发了事件，则重新计时</li>
+</ul>
+<h4 id="防抖和节流怎么做"><a href="#防抖和节流怎么做" class="headerlink" title="防抖和节流怎么做"></a>防抖和节流怎么做</h4><h5 id="用定时器实现一个简单的防抖"><a href="#用定时器实现一个简单的防抖" class="headerlink" title="用定时器实现一个简单的防抖"></a>用定时器实现一个简单的防抖</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">func, wait</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">var</span> timeout = <span class="literal">null</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (timeout != <span class="literal">null</span>) clearInterval(timeout);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    timeout = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      func()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;, wait*<span class="number">1000</span>);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'mousewheel'</span>, debounce(handle, <span class="number">1</span>));</span></pre></td></tr></table></figure>
+
+<h5 id="用时间戳实现一个简单的节流"><a href="#用时间戳实现一个简单的节流" class="headerlink" title="用时间戳实现一个简单的节流"></a>用时间戳实现一个简单的节流</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, wait</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">var</span> time = <span class="built_in">Date</span>.now();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> now = <span class="built_in">Date</span>.now();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (now - time &gt; wait*<span class="number">1000</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      time = now;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      func();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>测试</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'mousewheel'</span>, throttle(handle, <span class="number">1</span>));</span></pre></td></tr></table></figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://blog.c2wei.cn">
+            <img src="/img/avatar.jpg" alt="kala">
+            kala
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/04/25/%E4%BD%BF%E7%94%A8webhooks%E5%AE%9E%E7%8E%B0git%E8%87%AA%E5%8A%A8%E6%8B%89%E5%8F%96%E4%BB%A3%E7%A0%81/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用webhooks实现git自动拉取代码</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/04/16/js%E5%AE%9A%E6%97%B6%E5%99%A8%E5%AE%9E%E7%8E%B0%E5%8A%A8%E7%94%BB/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">js定时器实现动画</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>kala &copy; 2017 - 2020</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
