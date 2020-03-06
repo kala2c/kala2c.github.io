@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>DOM事件 | kala的博客 | 个人学习笔记、踩坑记录、感悟分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="javascript,dom">
+    <meta name="description" content="事件机制事件注册事件绑定即通过形如onclick的方法注册事件，比如 1btn.onclick &#x3D; function() &amp;#123;2	console.log(&quot;hello&quot;)3&amp;#125;45area.onmouseover &#x3D; function() &amp;#123;6  console.log(&quot;hello&quot;)7&amp;#125;  还可以写到html里（极不提倡）： 1&lt;button oncl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM事件">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2018&#x2F;05&#x2F;21&#x2F;DOM%E4%BA%8B%E4%BB%B6&#x2F;index.html">
+<meta property="og:site_name" content="kala的博客">
+<meta property="og:description" content="事件机制事件注册事件绑定即通过形如onclick的方法注册事件，比如 1btn.onclick &#x3D; function() &amp;#123;2	console.log(&quot;hello&quot;)3&amp;#125;45area.onmouseover &#x3D; function() &amp;#123;6  console.log(&quot;hello&quot;)7&amp;#125;  还可以写到html里（极不提倡）： 1&lt;button oncl">
+<meta property="article:published_time" content="2018-05-21T09:55:05.000Z">
+<meta property="article:modified_time" content="2020-03-06T12:04:25.560Z">
+<meta property="article:author" content="kala">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="dom">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">kala</h5>
+          <a href="mailto:clw_work@163.com" title="clw_work@163.com" class="mail">clw_work@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">DOM事件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">DOM事件</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-21T09:55:05.000Z" itemprop="datePublished" class="page-time">
+  2018-05-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#事件机制"><span class="post-toc-number">1.</span> <span class="post-toc-text">事件机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件注册"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">事件注册</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#事件绑定"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">事件绑定</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#事件监听"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">事件监听</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件冒泡和事件捕获"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">事件冒泡和事件捕获</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#默认行为"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">默认行为</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#事件冒泡"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">事件冒泡</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#事件捕获"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">事件捕获</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#先捕获"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">先捕获</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件代理（事件委托）"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">事件代理（事件委托）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#事件触发的阶段"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">事件触发的阶段</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DOM多级事件"><span class="post-toc-number">2.</span> <span class="post-toc-text">DOM多级事件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DOM0级"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">DOM0级</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DOM1级"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">DOM1级</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DOM2级"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">DOM2级</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#DOM3级"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">DOM3级</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-DOM事件"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">DOM事件</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-21 17:55:05" datetime="2018-05-21T09:55:05.000Z"  itemprop="datePublished">2018-05-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="事件机制"><a href="#事件机制" class="headerlink" title="事件机制"></a>事件机制</h3><h4 id="事件注册"><a href="#事件注册" class="headerlink" title="事件注册"></a>事件注册</h4><h5 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h5><p>即通过形如onclick的方法注册事件，比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">console</span>.log(<span class="string">"hello"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">area.onmouseover = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">"hello"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>还可以写到html里（极不提倡）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"handle"</span>&gt;</span>点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></pre></td></tr></table></figure>
+
+<p>事件绑定无法为同一元素（节点）同一事件重复注册回调函数，后注册的回调函数会覆盖掉已经注册的回调函数，因为绑定的事件是作为元素的一个属性，回调函数是该属性的值</p>
+<h5 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h5><p><strong>这是现在提倡的事件注册方式</strong></p>
+<ul>
+<li><p>addEventListener</p>
+<p>addEventListener(‘事件类型’, 回调函数, 布尔值|对象)，第三个参数使用布尔值时表示使用冒泡(false)还是捕获(true)，默认为false</p>
+<p>第三个参数使用对象时有三个属性</p>
+<ul>
+<li><code>capture</code>：布尔值，true事件捕获false事件冒泡</li>
+<li><code>once</code>，布尔值，是否在回调执行后立即移除监听，即只调用一次回调函数</li>
+<li><code>passive</code>，布尔值，是否禁用 <code>preventDefault</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">button.addEventListener(<span class="string">'click'</span>, handle, <span class="literal">true</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">button.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">"您只会看到一次该消息"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;, &#123; <span class="attr">capture</span>: <span class="literal">false</span>, <span class="attr">once</span>: <span class="literal">true</span>, <span class="attr">passive</span>: <span class="literal">true</span> &#125;)</span></pre></td></tr></table></figure>
+</li>
+<li><p>removeEventListener</p>
+<p>removeEventListener(‘事件类型’, 回调函数, 布尔值)，即移除对应的监听，第三个参数表示在事件捕获阶段(true)还是事件冒泡阶段(false)移除，默认为false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">button.addEventListener(<span class="string">'click'</span>, handle, <span class="literal">true</span>)</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>事件监听是使用了事件池/事件队列机制，不再以属性方式，因此可以注册多个回调函数</p>
+<p>使用监听的好处</p>
+<ul>
+<li>可以为同一元素同一事件注册多个回调函数</li>
+<li>可以灵活的控制事件冒泡事件捕获等行为</li>
+<li>可以移除监听，释放内存</li>
+</ul>
+<p>注意：IE6-8 不支持这一方法，但有类似的方法：<code>EventTarget.attachEvent</code></p>
+<h4 id="事件冒泡和事件捕获"><a href="#事件冒泡和事件捕获" class="headerlink" title="事件冒泡和事件捕获"></a>事件冒泡和事件捕获</h4><h5 id="默认行为"><a href="#默认行为" class="headerlink" title="默认行为"></a>默认行为</h5><p>js事件默认会在点击子元素时同时触发父元素和上级元素注册的事件，按照触发顺序分为事件冒泡和事件捕获</p>
+<p>如下代码，点击div.child时div.root和div.father上注册的事件也会触发</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"root"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"father"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  <span class="keyword">const</span> <span class="keyword">get</span> = <span class="function"><span class="keyword">function</span><span class="params">(selector)</span> </span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="javascript">    <span class="keyword">return</span> <span class="built_in">document</span>.querySelector(selector);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  let root = <span class="keyword">get</span>(<span class="string">'.root'</span>),</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  father = <span class="keyword">get</span>(<span class="string">'.father'</span>),</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  child = <span class="keyword">get</span>(<span class="string">'.child'</span>)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  <span class="keyword">const</span> capture = <span class="literal">true</span> <span class="comment">// true为捕获false为冒泡</span></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  root.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">    alert(<span class="string">"I'm root"</span>)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;, capture);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  father.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">    alert(<span class="string">"I'm father"</span>)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;, capture);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">  child.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">    alert(<span class="string">"I'm child"</span>)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  &#125;, capture);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+
+<h5 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h5><p>点击子元素时，按照子元素-&gt;父元素-&gt;上级元素的顺序触发注册的事件</p>
+<p>设置变量<code>capture</code>为false，点击div.child时依次提示<code>I&#39;m child</code>，<code>I&#39;m father</code>，<code>I&#39;m root</code></p>
+<p>注意：当使用事件绑定时，也会有事件冒泡行为</p>
+<h5 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h5><p>点击子元素时，按照上级元素-&gt;父元素-&gt;子元素的顺序触发注册的事件</p>
+<p>设置变量<code>capture</code>为true，点击div.child时依次提示<code>I&#39;m root</code>，<code>I&#39;m father</code>，<code>I&#39;m child</code></p>
+<h5 id="先捕获"><a href="#先捕获" class="headerlink" title="先捕获"></a>先捕获</h5><p>dom结构中可能会同时注册捕获和冒泡事件，此时先进行事件捕获</p>
+<h4 id="事件代理（事件委托）"><a href="#事件代理（事件委托）" class="headerlink" title="事件代理（事件委托）"></a>事件代理（事件委托）</h4><p>为目标节点的父元素或上级元素添加事件监听/绑定，利用事件冒泡行为，点击目标时触发目标上级元素注册的事件，在事件回调中判断实际点击的目标并实现操作。称为事件代理，也叫做事件委托</p>
+<p>例下面渲染了一个列表，点击列表时会显示一些条目信息</p>
+<p>html：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-group"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-item"</span>&gt;</span>条目一<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-item"</span>&gt;</span>条目二<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-item"</span>&gt;</span>条目三<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></pre></td></tr></table></figure>
+
+<p>js：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list = <span class="built_in">document</span>.querySelector(<span class="string">'.list-group'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">list.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> target = event.target  <span class="comment">//可以获取到实际点击的对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(target.innerText)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+
+<p>这样我们无需为每一个条目注册事件，并且后续如果列表发生了变化，新增的条目也能触发事件</p>
+<p>使用事件代理的好处</p>
+<ul>
+<li><p>节省内存</p>
+</li>
+<li><p>减少事件注册</p>
+</li>
+<li><p>目标节点不需要存在，即事件监听后渲染的元素也同样能触发</p>
+</li>
+</ul>
+<h4 id="事件触发的阶段"><a href="#事件触发的阶段" class="headerlink" title="事件触发的阶段"></a>事件触发的阶段</h4><p>综上所述，我们可以得出当事件触发时，有三个阶段</p>
+<ul>
+<li>最顶层（window）往事件触发处传递，遇到注册的<strong>捕获事件</strong>会触发</li>
+<li>传递到事件触发处时触发注册的事件</li>
+<li>事件触发处向最顶层（window）传递，遇到注册的<strong>冒泡事件</strong>会触发</li>
+</ul>
+<p>如果一个节点同时注册了冒泡和捕获事件，则按注册顺序触发</p>
+<h3 id="DOM多级事件"><a href="#DOM多级事件" class="headerlink" title="DOM多级事件"></a>DOM多级事件</h3><p>dom的事件级别含义是根据w3c指定的dom标准区分，按时间先后分为dom级别0、dom级别1、dom级别2、dom级别3，其实各个级别就是不同时间颁发或补充的标准</p>
+<h4 id="DOM0级"><a href="#DOM0级" class="headerlink" title="DOM0级"></a>DOM0级</h4><p>规定了使用形如onclick的方式绑定事件</p>
+<h4 id="DOM1级"><a href="#DOM1级" class="headerlink" title="DOM1级"></a>DOM1级</h4><p>1级DOM标准中并没有规定事件相关的内容</p>
+<h4 id="DOM2级"><a href="#DOM2级" class="headerlink" title="DOM2级"></a>DOM2级</h4><p>新增了事件监听，即addEventListener函数和removeEventListener</p>
+<h4 id="DOM3级"><a href="#DOM3级" class="headerlink" title="DOM3级"></a>DOM3级</h4><p>对dom事件的规范和补充，主要是h5新增的拖拽、触摸和视频播放等事件</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://blog.c2wei.cn">
+            <img src="/img/avatar.jpg" alt="kala">
+            kala
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dom/" rel="tag">dom</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/06/10/%E4%BD%BF%E7%94%A8docker%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%AA%E8%80%81%E9%A1%B9%E7%9B%AE/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用docker部署一个老项目</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/15/js%E9%97%AD%E5%8C%85/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">js闭包</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>kala &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.beian.miit.gov.cn/" target="_blank">鲁ICP备17033416号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
