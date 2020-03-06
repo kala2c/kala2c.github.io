@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>一、http发送数据的格式 | kala的博客 | 个人学习笔记、踩坑记录、感悟分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="http">
+    <meta name="description" content="HTTP请求的组成http请求有四部分组成，即请求行、请求头、空行、请求体，例： 1POST &#x2F;post HTTP&#x2F;1.1                                 #请求行2Accept: application&#x2F;json, text&#x2F;plain, *&#x2F;*           #从这行开始为请求头               3Accept-Encoding: gzip,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一、http发送数据的格式">
+<meta property="og:url" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2018&#x2F;02&#x2F;26&#x2F;%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F&#x2F;index.html">
+<meta property="og:site_name" content="kala的博客">
+<meta property="og:description" content="HTTP请求的组成http请求有四部分组成，即请求行、请求头、空行、请求体，例： 1POST &#x2F;post HTTP&#x2F;1.1                                 #请求行2Accept: application&#x2F;json, text&#x2F;plain, *&#x2F;*           #从这行开始为请求头               3Accept-Encoding: gzip,">
+<meta property="og:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2018&#x2F;02&#x2F;26&#x2F;%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F&#x2F;0.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2018&#x2F;02&#x2F;26&#x2F;%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2018&#x2F;02&#x2F;26&#x2F;%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F&#x2F;2.png">
+<meta property="article:published_time" content="2018-02-26T07:04:14.000Z">
+<meta property="article:modified_time" content="2020-03-05T09:34:26.429Z">
+<meta property="article:author" content="kala">
+<meta property="article:tag" content="http">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;blog.c2wei.cn&#x2F;2018&#x2F;02&#x2F;26&#x2F;%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F&#x2F;0.png">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.1.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">kala</h5>
+          <a href="mailto:clw_work@163.com" title="clw_work@163.com" class="mail">clw_work@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一、http发送数据的格式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">一、http发送数据的格式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-26T07:04:14.000Z" itemprop="datePublished" class="page-time">
+  2018-02-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93/">前后端数据传输</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#HTTP请求的组成"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTTP请求的组成</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#get请求的参数"><span class="post-toc-number">2.</span> <span class="post-toc-text">get请求的参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#post请求的请求体"><span class="post-toc-number">3.</span> <span class="post-toc-text">post请求的请求体</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#form-data"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">form-data</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#x-www-form-urlencoded"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">x-www-form-urlencoded</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#raw"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">raw</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-一、http发送数据的格式"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一、http发送数据的格式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-26 15:04:14" datetime="2018-02-26T07:04:14.000Z"  itemprop="datePublished">2018-02-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93/">前后端数据传输</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h4 id="HTTP请求的组成"><a href="#HTTP请求的组成" class="headerlink" title="HTTP请求的组成"></a>HTTP请求的组成</h4><p>http请求有四部分组成，即请求行、请求头、空行、请求体，例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">POST /post HTTP/1.1                                 #请求行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Accept</span>: application/json, text/plain, */*           #从这行开始为请求头               </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate, br</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Accept-Language</span>: zh-CN,zh;q=0.9,en;q=0.8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Connection</span>: keep-alive</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Length</span>: 22</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Type</span>: application/x-www-form-urlencoded; charset=UTF-8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Host</span>: 127.0.0.1:7002</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">Origin</span>: http://127.0.0.1:7000</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">                                                    #空行 但是必需</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">id=1&amp;foo=bar                                        #请求(主)体</span></pre></td></tr></table></figure>
+
+<h4 id="get请求的参数"><a href="#get请求的参数" class="headerlink" title="get请求的参数"></a>get请求的参数</h4><p>get请求的作用通常是向服务端获取信息，即”查询“，查询往往需要有条件的查询，因此get请求会带有一些参数，</p>
+<p>这些参数根据发送格式分为<code>查询参数</code>和<code>路由参数</code>两类</p>
+<p>如下发送的都是 <code>{id: 1, name: &quot;quz&quot;}</code> 数据</p>
+<ul>
+<li><p>查询参数(queryString) </p>
+<p>格式：<code>?id=1&amp;name=quz</code></p>
+<p>例：<a href="http://abc.cn/api/user?id=1&amp;name=quz" target="_blank" rel="noopener">http://abc.cn/api/user?id=1&amp;name=quz</a></p>
+</li>
+<li><p>路由参数</p>
+<p>格式：/api/user/1/quz 或 /api/user/id/1/name/quz</p>
+<p>例：<a href="http://abc.cn/api/user/1/quz" target="_blank" rel="noopener">http://abc.cn/api/user/1/quz</a> 或 <a href="http://abc.cn/api/user/id/1/name/quz" target="_blank" rel="noopener">http://abc.cn/api/user/id/1/name/quz</a></p>
+</li>
+</ul>
+<p>两种格式的参数服务端接收时略有不同，后边会展开讨论</p>
+<p>get请求的参数通常附带在url中，都比较简短，一些应用中在使用post请求也会把<strong>条件参数</strong>放在url中，但是只要是url里的参数，使用最多的格式就这两种</p>
+<h4 id="post请求的请求体"><a href="#post请求的请求体" class="headerlink" title="post请求的请求体"></a>post请求的请求体</h4><p>post请求（包括put请求）会向服务端发送一些实体数据用于保存或更新操作，这部分数据不会在url中，会放在http请求的第四部分请求体中，常用的格式有三种，下面是请求调试工具postman的数据格式部分截图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2018/02/26/%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F/0.png" alt="image-20200209120528557" title>
+                </div>
+                <div class="image-caption">image-20200209120528557</div>
+            </figure>
+
+<p>从postman中可以看到有四种格式，第四种binary使用少一些，暂不讨论，其它三种我结合请求头里的Content-Type进行介绍</p>
+<ul>
+<li><h5 id="form-data"><a href="#form-data" class="headerlink" title="form-data"></a>form-data</h5><p>这个格式发送的数据在Chrome DevTools(按F12打开的东西)里的截图如下</p>
+<p><img src="/2018/02/26/%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F/1.png" alt="image-20200209145746498"></p>
+<p>对应的请求头Content-Type为<code>multipart/form-data</code>，此格式可以发送文件，表单数据会被编码为一条信息，具体格式为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryjW5nW1BH7beKGqTx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data; name&#x3D;&quot;id&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryjW5nW1BH7beKGqTx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Content-Disposition: form-data; name&#x3D;&quot;foo&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">bar</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">------WebKitFormBoundaryjW5nW1BH7beKGqTx--</span></pre></td></tr></table></figure>
+
+<p>其中数据中每段开头会有一行<code>------WebKitFormBoundaryjW5nW1BH7beKGqTx</code>，这是<code>multer编码</code>的<code>Boundary</code>值，会加在请求头的<code>Content-Type</code>中，因此该格式完整Content-type格式为<code>multipart/form-data; boundary=----WebKitFormBoundaryW5nW1BH7beKGqTx</code>，每次请求的Boundary值也不相同</p>
+</li>
+<li><h5 id="x-www-form-urlencoded"><a href="#x-www-form-urlencoded" class="headerlink" title="x-www-form-urlencoded"></a>x-www-form-urlencoded</h5><p>这个格式的数据在Chrome DevTools截图和上一个格式数据一样</p>
+<p>对应的请求头Content-Type为<code>application/x-www-form-urlencoded</code>，数据在后端的接收方式通常也和<code>multipart/form-data</code>一致，但是此格式只能发送文本，数据会被编码为键值对，汉字也会被编码，具体格式为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">id&#x3D;1&amp;foo&#x3D;bar</span></pre></td></tr></table></figure>
+<p>下面是带有汉字时：<code>id=1&amp;foo=测试</code>的编码，汉字编码为URL encoding</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">id&#x3D;1&amp;foo&#x3D;%E6%B5%8B%E8%AF%95</span></pre></td></tr></table></figure>
+</li>
+<li><h5 id="raw"><a href="#raw" class="headerlink" title="raw"></a>raw</h5><p>这个格式发送的数据在Chrome DevTools(按F12打开的东西)里的截图如下</p>
+<p><img src="/2018/02/26/%E4%B8%80%E3%80%81http%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F/2.png" alt="image-20200209145851414"></p>
+<p>可以看到标题部分已经变为了request payload，但不管是Form Data还是request payload，数据都放在http请求的第四部分请求体中，只是编码/格式的区别</p>
+<p>此格式对应的请求头Content-Type为<code>application/json</code>，相对应的数据格式也是json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;id: 1, foo: &quot;bar&quot;&#125;</span></pre></td></tr></table></figure>
+
+<p>raw格式和前两种在服务端接受时大有不同，这是前后端必需的沟通点，许多nodejs初学者(包括我)往往碰到post数据为空的情况，就是遇到了这个问题</p>
+</li>
+</ul>
+<p><strong>当不发送文件时使用<code>x-www-form-urlencoded</code>或<code>json</code>格式，只有发送文件时，才使用<code>multipart/form-data</code></strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <footer>
+        <a href="http://blog.c2wei.cn">
+            <img src="/img/avatar.jpg" alt="kala">
+            kala
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li></ul>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/27/%E4%BA%8C%E3%80%81Ajax%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">二、Ajax发送数据</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/30/input%E7%9A%84%E5%85%89%E6%A0%87/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">input的光标</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>kala &copy; 2017 - 2020</span>
+            <span>
+                
+                <a href="http://www.beian.miit.gov.cn/" target="_blank">鲁ICP备17033416号-1</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: false, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
